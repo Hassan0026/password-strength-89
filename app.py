@@ -1,26 +1,19 @@
+import streamlit as st 
 import re
-import streamlit as st
 
-st.set_page_config(page_title="Password Strength Checker by Hassan Jamshed", page_icon="🔑", layout="centered")
-#custom css
-st.markdown(""" 
-<style>
-    .main {text-align:center;}
-    .stTextInput {width: 60% !important; margin: auto; }
-    .stButton button {width: 50%; background-color #4CAF50; color: white; font-size: 18px; }
-    .stButton button:hover { background-color: #45a049;}
-</style>
-""", unsafe_allow_html=True)
+st.set_page_config(page_title="Password Strength Checker by Hassan Jamshed", page_icon="🔐")
 
-#page title and description
 st.title("🔐 Password Strength Generator")
-st.write("Enter your password below to check its security level. 🔍")
+st.markdown("""
+"##Welcome to the Password Strength Checker!🔐""")
 
-#function
-def check_password_strenght(password):
-    score = 0
-    feedback = []
-    
+password = st.text_input("Enter your password", type="password")
+
+feedback = []
+
+score = 0
+
+if password:
     if len(password) >=8:
         score += 1 #increase score by 1
     else:
@@ -52,14 +45,8 @@ def check_password_strenght(password):
         
     #feedback
     if feedback:
-        with st.expander("🔍 Improve Your Password"):
-            for item in feedback:
-                st.write(item)
-    password = st.text_input("Enter your password:", type="password", help="Ensure your password is strong")
-    
-    #button working
-    if st.button("Check Strength"):
-        if password:
-            check_password_strenght(password)
-        else:
-            st.warning("⚠️ Please enter a password first!")
+        st.markdown("## Improvement Suggestion")
+        for tip in feedback:
+            st.write(tip)
+else:
+    st.info("Please enter your password to check stregth.")
