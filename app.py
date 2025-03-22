@@ -5,7 +5,7 @@ st.set_page_config(page_title="Password Strength Checker by Hassan Jamshed", pag
 
 st.title("🔐 Password Strength Generator")
 st.markdown("""
-"##Welcome to the Password Strength Checker!🔐""")
+"## Welcome to the Password Strength Checker!🔐""")
 
 password = st.text_input("Enter your password", type="password")
 
